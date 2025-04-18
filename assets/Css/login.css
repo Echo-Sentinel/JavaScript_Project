@@ -1,79 +1,113 @@
+/* Сброс стилей и базовые настройки */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #e6e6e6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
 
+/* Контейнер формы */
+.form-container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Подзаголовок */
+p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+/* Метки */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #8000ff;
+  box-shadow: 0 0 4px rgba(128, 0, 255, 0.4);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f44336;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d7372f;
+}
+
+.login-btn {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-btn a {
+  color: #8000ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-btn a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 680px) {
   .form-container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
   }
 
   h2 {
-    text-align: center;
-    margin-bottom: 10px;
+    font-size: 20px;
   }
 
-  p {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #666;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-  }
-
-  input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 20px;
+  input,
+  button {
     font-size: 14px;
   }
-
-  input:focus {
-    outline: none;
-    border-color: #8000ff;
-  }
-
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #f44336;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  .login-btn{
-    margin-top: 20px;
-  }
-  button:hover {
-    background-color: #d6372c;
-  }
-
-  .error {
-    color: red;
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
+}
