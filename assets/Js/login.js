@@ -1,68 +1,61 @@
 const form = document.getElementById("loginForm");
 const isAdminCheckbox = document.getElementById("isAdmin");
-const adminNameContainer = document.getElementById("adminNameContainer");
+const adminField = document.getElementById("adminField");
 
-
-isAdminCheckbox.addEventListener("change", () => {
-  adminNameContainer.style.display = isAdminCheckbox.checked ? "block" : "none";
+isAdminCheckbox.addEventListener("change", function () {
+  adminField.style.display = this.checked ? "block" : "none";
 });
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const fullName = document.getElementById("fullname").value.trim();
-  const password = document.getElementById("password").value.trim();
+  const password = document.getElementById("password").value;
   const isAdmin = isAdminCheckbox.checked;
   const adminName = document.getElementById("adminName").value.trim();
+  const adminPassword = document.getElementById("adminPassword").value;
 
-  if (!fullName || !password || (isAdmin && !adminName)) {
-    showToast("Please fill in all fields.");
+  if (!fullName || !password || (isAdmin && (!adminName || !adminPassword))) {
+    Toastify({
+      text: "Please fill in all fields.",
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
+    }).showToast();
     return;
   }
 
-  if (password.length < 6) {
-    showToast("Password must be at least 6 characters.");
-    return;
-  }
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find(u => u.fullName === fullName && u.password === password);
 
-  try {
-    let url = `http://localhost:3000/users?fullName=${fullName}&password=${password}`;
-    if (isAdmin) {
-      url += `&isAdmin=true&adminName=${adminName}`;
-    }
-
-    const response = await fetch(url);
-    const users = await response.json();
-
-    if (users.length === 0) {
-      showToast("Wrong email or password.");
-      return;
-    }
-
-    const user = users[0];
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-    Swal.fire(
-      'Login Successful!',
-      isAdmin ? `Welcome, Admin ${adminName}!` : `Welcome, ${user.fullName}!`,
-      'success'
-    ).then(() => {
-      window.location.href = "index.html";
+  if (!user) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Failed',
+      text: 'Incorrect email or password.',
+      confirmButtonColor: '#f44336'
     });
-
-    form.reset();
-  } catch (err) {
-    console.error(err);
-    showToast("Server error. Try again later.");
+    return;
   }
-});
 
-function showToast(message) {
-  Toastify({
-    text: message,
-    duration: 3000,
-    gravity: "top",
-    position: "center",
-    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
-  }).showToast();
-}
+  if (isAdmin && (user.fullName !== adminName || user.password !== adminPassword)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Admin Login Failed',
+      text: 'Incorrect admin name or password.',
+      confirmButtonColor: '#f44336'
+    });
+    return;
+  }
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Login Successful!',
+    text: `Welcome, ${user.fullName}!`,
+    confirmButtonColor: '#f44336'
+  });
+
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+  form.reset();
+});
