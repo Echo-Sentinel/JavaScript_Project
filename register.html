@@ -3,41 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create Account</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <title>Register</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<link rel="stylesheet" href="./assets/Css/register.css">
+  <link rel="stylesheet" href="./assets/Css/register.css">
 </head>
 <body>
-
   <div class="form-container">
-    <h2>Create Account</h2>
-    <p>Please complete your account by setting your username and password.</p>
+    <h2>Register</h2>
+    <p>Create an account by filling out the form below.</p>
 
     <form id="registerForm">
-      <label for="fullname">Enter your Email</label>
-      <input type="text" id="fullname" required />
-
-      <label for="username">Username</label>
-      <input type="text" id="username" required />
+      <label for="fullname">Enter Gmail</label>
+      <input type="text" id="fullname" placeholder="example@gmail.com" required />
 
       <label for="password">Enter Password</label>
-      <input type="password" id="password" required />
+      <input type="password" id="password" placeholder="Minimum 6 characters" required />
 
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" required />
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="isAdmin"> Register as Admin
+        </label>
+      </div>
 
-      <div class="error" id="errorMsg"></div>
+      <div class="admin-field" id="adminField">
+        <label for="adminName">Admin Name</label>
+        <input type="text" id="adminName" placeholder="Admin Name" />
+        <label for="adminPassword">Admin Password</label>
+        <input type="password" id="adminPassword" placeholder="Admin Password" />
+      </div>
 
-      <button type="submit">Complete</button>
-      <p class="login-btn">Alredy have account ? <a href="./login.html">Sing-in</a></p>
+      <button type="submit">Register</button>
+
+      <p class="login-btn">Already have an account? <a href="./login.html">Login</a></p>
     </form>
   </div>
 
-  
-<script src="./assets/Js/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="./assets/Js/register.js"></script>
 </body>
 </html>
