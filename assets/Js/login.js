@@ -9,13 +9,13 @@ isAdminCheckbox.addEventListener("change", function () {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const fullName = document.getElementById("fullname").value.trim();
+  const gmail = document.getElementById("gmail").value.trim();
   const password = document.getElementById("password").value;
   const isAdmin = isAdminCheckbox.checked;
-  const adminName = document.getElementById("adminName").value.trim();
+  const adminGmail = document.getElementById("adminGmail").value.trim();
   const adminPassword = document.getElementById("adminPassword").value;
 
-  if (!fullName || !password || (isAdmin && (!adminName || !adminPassword))) {
+  if (!gmail || !password || (isAdmin && (!adminGmail || !adminPassword))) {
     Toastify({
       text: "Please fill in all fields.",
       duration: 3000,
@@ -27,23 +27,23 @@ form.addEventListener("submit", function (e) {
   }
 
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  const user = users.find(u => u.fullName === fullName && u.password === password);
+  const user = users.find(u => u.gmail === gmail && u.password === password);
 
   if (!user) {
     Swal.fire({
       icon: 'error',
       title: 'Login Failed',
-      text: 'Incorrect email or password.',
+      text: 'Incorrect Gmail or password.',
       confirmButtonColor: '#f44336'
     });
     return;
   }
 
-  if (isAdmin && (user.fullName !== adminName || user.password !== adminPassword)) {
+  if (isAdmin && (user.gmail !== adminGmail || user.password !== adminPassword)) {
     Swal.fire({
       icon: 'error',
       title: 'Admin Login Failed',
-      text: 'Incorrect admin name or password.',
+      text: 'Incorrect admin Gmail or password.',
       confirmButtonColor: '#f44336'
     });
     return;
@@ -52,10 +52,13 @@ form.addEventListener("submit", function (e) {
   Swal.fire({
     icon: 'success',
     title: 'Login Successful!',
-    text: `Welcome, ${user.fullName}!`,
+    text: `Welcome, ${user.gmail}!`,
     confirmButtonColor: '#f44336'
   });
 
   localStorage.setItem("loggedInUser", JSON.stringify(user));
   form.reset();
 });
+setTimeout(() => {
+  window.location.href = "index.html";  
+}, 1000);
