@@ -1,0 +1,18 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "fullName": "admin@gmail.com",
+        "password": "admin123",
+        "isAdmin": true,
+        "adminName": "SuperAdmin"
+      },
+      {
+        "id": 2,
+        "fullName": "user@gmail.com",
+        "password": "user123",
+        "isAdmin": false
+      }
+    ],
+    "products": []
+  } 
