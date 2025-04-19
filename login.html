@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/Css/login.css">
+  <title>Document</title>
 </head>
 <body>
   <div class="form-container">
     <h2>Login</h2>
-    <p>Enter your email and password to access your account.</p>
-
     <form id="loginForm">
-      <label for="fullname">Enter Gmail</label>
+      <label for="fullname">Email</label>
       <input type="text" id="fullname" placeholder="example@gmail.com" required />
 
-      <label for="password">Enter Password</label>
-      <input type="password" id="password" placeholder="Minimum 6 characters" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="At least 6 characters" required />
+
+      <div class="admin-check">
+        <input type="checkbox" id="isAdmin">
+        <label for="isAdmin">Login as Admin</label>
+      </div>
+
+      <div id="adminNameContainer">
+        <label for="adminName">Admin Name</label>
+        <input type="text" id="adminName" placeholder="Enter Admin Name" />
+      </div>
 
       <button type="submit">Login</button>
 
-      <p class="login-btn">Don't have an account? <a href="./register.html">Create one</a></p>
+      <p class="login-btn">
+        Don't have an account? <a href="./register.html">Register</a>
+      </p>
     </form>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="./assets/Js/login.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 </html>

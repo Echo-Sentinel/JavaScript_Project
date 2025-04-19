@@ -1,113 +1,67 @@
-/* Сброс стилей и базовые настройки */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
 }
 
-/* Контейнер формы */
 .form-container {
-  background-color: #ffffff;
-  padding: 40px 30px;
-  border-radius: 12px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок */
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-/* Подзаголовок */
-p {
-  text-align: center;
-  color: #666;
-  margin-bottom: 30px;
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
   font-size: 14px;
 }
 
-/* Метки */
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #444;
-}
-
-input {
-  width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: 0.3s;
-}
-
-input:focus {
-  outline: none;
-  border-color: #8000ff;
-  box-shadow: 0 0 4px rgba(128, 0, 255, 0.4);
-}
-
 button {
-  width: 100%;
-  padding: 12px;
-  background-color: #f44336;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
+  background: #f44336;
+  color: white;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #d7372f;
+  background: #d7372f;
+}
+
+label {
+  margin-top: 15px;
+  display: block;
+  font-weight: bold;
+}
+
+.admin-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#adminNameContainer {
+  display: none;
 }
 
 .login-btn {
-  margin-top: 20px;
   text-align: center;
+  margin-top: 15px;
   font-size: 14px;
 }
 
 .login-btn a {
   color: #8000ff;
   text-decoration: none;
-  font-weight: 600;
-}
-
-.login-btn a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 680px) {
-  .form-container {
-    padding: 30px 20px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  input,
-  button {
-    font-size: 14px;
-  }
 }
