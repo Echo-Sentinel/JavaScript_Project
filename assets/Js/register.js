@@ -1,98 +1,88 @@
-const registerForm = document.getElementById("registerForm");
-const isAdminCheckbox = document.getElementById("isAdmin");
-const adminField = document.getElementById("adminField");
+document.addEventListener("DOMContentLoaded", () => {
+    let form = document.querySelector("form");
+    let name = document.querySelector("#name");
+    let username = document.querySelector("#username");
+    let email = document.querySelector("#email");
+    let password = document.querySelector("#password");
+    let confirmpassword = document.querySelector("#confirmpassword");
 
-isAdminCheckbox.addEventListener("change", function () {
-  adminField.style.display = this.checked ? "block" : "none";
-});
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-registerForm.addEventListener("submit", function (e) {
-  e.preventDefault();
+    form.addEventListener("submit", submit);
 
-  const gmail = document.getElementById("gmail").value.trim();
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-  const isAdmin = document.getElementById("isAdmin").checked;
-  const adminName = document.getElementById("adminName").value.trim();
-  const adminPassword = document.getElementById("adminPassword").value;
+    function submit(e) {
+        e.preventDefault();
+        let uniqueUser = users.some(
+            (item) => item.username === username.value || item.email === email.value
+        );
+        if (uniqueUser) {
+            toast("Bu istifadəçi adı və ya e-poçt artıq mövcuddur.");
+            return;
+        }
+        let usernameRegex = /^[a-zA-Z0-9_-]{3,20}$/;
+        if (!usernameRegex.test(username.value)) {
+            toast("İstifadəçi adı minimum 3, maksimum 20 simvol olmalıdır.");
+            return;
+        }
+        let emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email.value)) {
+            toast("Zəhmət olmasa düzgün e-poçt daxil edin.");
+            return;
+        }
+        let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%&]).{8,}$/;
+        if (!passwordRegex.test(password.value)) {
+            toast("Şifrə minimum 8 simvol, 1 böyük hərf, 1 kiçik hərf, 1 rəqəm və 1 xüsusi simvol içerməlidir.");
+            let check1=document.querySelector(".check1")
+            let check=document.querySelector(".check")
+            check.style.display = "block";
+            check.style.backgroundColor = "red";
+            check1.style.display = "block";
+            check1.style.backgroundColor = "red";
+            return;
+        } else {
+            let check1=document.querySelector(".check1")
+            let check=document.querySelector(".check")
+            check.style.display = "block";
+            check.style.backgroundColor = "green";
+            check1.style.display = "block";
+            check1.style.backgroundColor = "green";
 
-  if (!gmail || !username || !password || !confirmPassword) {
-    Toastify({
-      text: "Please fill in all fields.",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
-    }).showToast();
-    return;
-  }
+        }
+        if (password.value !== confirmpassword.value) {
+            toast("Şifrələr uyğun deyil.");
+            return;
+        }
+        id=uuidv4()
+        let newUser = {
+            name: name.value,
+            username: username.value,
+            email: email.value,
+            password: password.value,
+            isLogined: false,
+            id,
+            wishlist: [],
+            quantity:0,
+            basket:[],
+        };
 
-  if (password !== confirmPassword) {
-    Toastify({
-      text: "Passwords do not match.",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
-    }).showToast();
-    return;
-  }
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
 
-  if (password.length < 6) {
-    Toastify({
-      text: "Password must be at least 6 characters.",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
-    }).showToast();
-    return;
-  }
+        toast("Qeydiyyat uğurla tamamlandı!");
 
-  if (isAdmin && (!adminName || !adminPassword)) {
-    Toastify({
-      text: "Please fill in all admin fields.",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
-    }).showToast();
-    return;
-  }
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1000);
+    }
 
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  const userExists = users.find(user => user.username === username);
-
-  if (userExists) {
-    Toastify({
-      text: "User with this username already exists.",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
-    }).showToast();
-    return;
-  }
-
-  const newUser = {
-    gmail,
-    username,
-    password,
-    isAdmin,
-    adminName: isAdmin ? adminName : null,
-    adminPassword: isAdmin ? adminPassword : null,
-  };
-
-  users.push(newUser);
-  localStorage.setItem("users", JSON.stringify(users));
-
-  Swal.fire({
-    icon: 'success',
-    title: 'Registration Successful!',
-    text: 'You can now log in.',
-    confirmButtonColor: '#f44336'
-  }).then(() => {
-    window.location.href = "login.html";
-  });
+    let toast = (text) => {
+        Toastify({
+            text: text,
+            duration: 3000,
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    };
 });
