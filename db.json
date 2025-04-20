@@ -1,18 +1,26 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "fullName": "admin@gmail.com",
-        "password": "admin123",
-        "isAdmin": true,
-        "adminName": "SuperAdmin"
-      },
-      {
-        "id": 2,
-        "fullName": "user@gmail.com",
-        "password": "user123",
-        "isAdmin": false
-      }
-    ],
-    "products": []
-  } 
+  "users": [
+    { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
+    { "id": 2, "username": "user", "password": "user123", "role": "user" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Black Leather Bag",
+      "price": 130,
+      "oldPrice": 340,
+      "isNew": true,
+      "image": "https://via.placeholder.com/200x200",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "title": "Brown Leather Bag",
+      "price": 130,
+      "oldPrice": 340,
+      "isNew": false,
+      "image": "https://via.placeholder.com/200x200",
+      "rating": 4
+    }
+  ]
+}

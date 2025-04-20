@@ -14,7 +14,6 @@ body {
   padding: 20px;
 }
 
-/* Контейнер формы */
 .form-container {
   background-color: #ffffff;
   padding: 40px 30px;
@@ -24,14 +23,12 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок */
 h2 {
   text-align: center;
   color: #333;
   margin-bottom: 10px;
 }
 
-/* Подзаголовок */
 p {
   text-align: center;
   color: #666;
@@ -39,7 +36,6 @@ p {
   font-size: 14px;
 }
 
-/* Метки */
 label {
   display: block;
   margin-bottom: 6px;

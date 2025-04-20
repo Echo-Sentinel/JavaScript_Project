@@ -2,39 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Snobella</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="./assets/Css/style.css">
+  <link rel="stylesheet" href="./assets/Css/style.css" />
+  <link rel="stylesheet" href="libs/toastify.min.css" />
 </head>
 <body>
-  <!-- Header -->
+  <!-- 🔼 NAVBAR -->
   <header class="navbar">
-    <div class="container">
-      <div class="logo">Snobella</div>
+    <div class="logo">Snobella</div>
 
-      <div class="search-box">
-        <input type="text" placeholder="Search all product">
-        <button><i class="fas fa-search"></i></button>
-      </div>
-
-      <div class="nav-actions">
-        <a href="./register.html" class="sign-up">
-          <i class="fa-regular fa-user"></i>
-          Sign up
-        </a>
-        <a href="./wishlist.html" class="wishlist">
-          <i class="fa-regular fa-heart"></i>
-          Wishlist
-        </a>
-        <a href="./basket.html" class="basket">
-          <i class="fa-solid fa-bag-shopping"></i>
-          Basket
-        </a>
-      </div>
-    </div>
-
-    <!-- Navigation Links -->
     <nav class="nav-links">
       <a href="#">Evening bags</a>
       <a href="#">Shoulder bag</a>
@@ -43,19 +20,46 @@
       <a href="#">Postman bag</a>
       <a href="#">Belt bags</a>
     </nav>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search all product..." />
+      <button id="searchBtn">🔍</button>
+    </div>
+
+    <div class="user-section">
+      <div id="authArea">
+        <button id="signInBtn">Sign up</button>
+      </div>
+
+      <div class="dropdown" id="dropdownMenu">
+        <button id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="icons">
+        <a href="#">❤️ Wishlist (<span id="favCount">0</span>)</a>
+        <a href="#">🛒 Basket (<span id="cartCount">0</span>)</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- 👜 MAIN HERO -->
   <section class="hero">
     <div class="hero-text">
-      <span class="discount">30% off</span>
-      <h1>Handbag products</h1>
-      <p class="desc">It is a long established fact that a reader will be distracted by the readable content expound the actual teachings of the great explorer</p>
-      <button class="shop-btn">Shop now</button>
+      <p class="discount">30% off</p>
+      <h2>Handbag products</h2>
+      <p>It is a long established fact that a reader will be distracted by the readable content expound the actual teachings of the great explorer.</p>
+      <button class="shop-now">Shop now</button>
+      <div class="slider-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
     </div>
     <div class="hero-image">
-      <img src="./assets/img/home images/home_img.png" alt="Handbags">
+      <img src="images/hero-bags.png" alt="bags" />
     </div>
   </section>
+
+  <script src="libs/toastify.min.js"></script>
+  <script src="./assets/Js/script.js"></script>
 </body>
 </html>
